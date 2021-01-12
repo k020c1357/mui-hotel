@@ -1,11 +1,12 @@
 import React from 'react';
-import Banner from '../components/Banner';
-import HotelCategories from '../components/HotelCategories';
-import Home from '../pages/Home';
+import Banner from './elements/Banner';
+import HotelCategories from './elements/HotelCategories';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function Content() {
   return (
     <React.Fragment>
+      <CssBaseline />
       <Banner />
       <HotelCategories />
     </React.Fragment>

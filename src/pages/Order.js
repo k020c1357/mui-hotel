@@ -1,18 +1,20 @@
 import React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from '../components/basic/Typography';
 import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer';
 import AppForm from '../components/basic/AppForm';
 import { email, required } from '../components/basic/form/validation';
-import RFTextField from '../components/basic/form/RFTextField';
 import FormButton from '../components/basic/form/FormButton';
 import FormFeedback from '../components/basic/form/FormFeedback';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../theme/theme';
+import withRoot from '../theme/withRoot';
+import DatePickers from '../components/orderform/DatePicker';
+import RoomType from '../components/orderform/RoomType';
+import PersonSelect from '../components/orderform/Person';
+import NumOfRooms from '../components/orderform/NumOfRooms';
+import FoodChoice from '../components/orderform/FoodChoice';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -27,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn() {
+function Order() {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
 
   const validate = (values) => {
-    const errors = required(['email', 'password'], values);
+    const errors = required(['firstName', 'lastName', 'email', 'password'], values);
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -49,23 +51,14 @@ function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <React.Fragment>
       <Header />
       <AppForm>
-        <Typography variant="h3" gutterBottom marked="center" align="center">
-          Sign In
+        <React.Fragment>
+          <Typography variant="h3" gutterBottom marked="center" align="center">
+            宿泊先
           </Typography>
-        <Typography variant="body2" align="center">
-          {'Not a member yet? '}
-          <Link
-            href="/premium-themes/onepirate/sign-up/"
-            align="center"
-            underline="always"
-          >
-            Sign Up here
-            </Link>
-        </Typography>
+        </React.Fragment>
         <Form
           onSubmit={handleSubmit}
           subscription={{ submitting: true }}
@@ -73,30 +66,25 @@ function SignIn() {
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <form onSubmit={handleSubmit2} className={classes.form} noValidate>
-              <Field
-                autoComplete="email"
-                autoFocus
-                component={RFTextField}
-                disabled={submitting || sent}
-                fullWidth
-                label="Email"
-                margin="normal"
-                name="email"
-                required
-                size="large"
-              />
-              <Field
-                fullWidth
-                size="large"
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="password"
-                autoComplete="current-password"
-                label="Password"
-                type="password"
-                margin="normal"
-              />
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12}>
+                  {/* <Field
+                    autoFocus
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    autoComplete="fname"
+                    fullWidth
+                    label="*******"
+                    name="firstName"
+                    required={false}
+                  /> */}
+                </Grid>
+              </Grid>
+              <DatePickers />
+              <RoomType />
+              <PersonSelect />
+              <NumOfRooms />
+              <FoodChoice />
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
@@ -109,24 +97,33 @@ function SignIn() {
               <FormButton
                 className={classes.button}
                 disabled={submitting || sent}
-                size="large"
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign In'}
+                {submitting || sent ? 'In progress…' : '予約する'}
               </FormButton>
+
+              <FormButton
+                className={classes.button}
+                color="secondary"
+                fullWidth
+              >
+                <Link
+                  href="/detail"
+                  align="center"
+                  underline="always"
+                >
+                  予約する
+              </Link>
+              </FormButton>
+
             </form>
           )}
         </Form>
-        <Typography align="center">
-          <Link underline="always" href="/detail">
-            Forgot password?
-          </Link>
-        </Typography>
       </AppForm>
-      {/* <Footer /> */}
-    </ThemeProvider>
+
+    </React.Fragment >
   );
 }
 
-export default SignIn;
+export default withRoot(Order);

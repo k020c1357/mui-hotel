@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import AppBar from '../components/AppBar';
-import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
+import AppBar from '../basic/AppBar';
+import Toolbar, { styles as toolbarStyles } from '../basic/Toolbar';
 
 const styles = (theme) => ({
   title: {
@@ -67,7 +66,7 @@ function Header(props) {
               variant="h6"
               underline="none"
               className={clsx(classes.rightLink, classes.linkSecondary)}
-              href="/signup"
+              href="/order"
             >
               {'Sign Up'}
             </Link>

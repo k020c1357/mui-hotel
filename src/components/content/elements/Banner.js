@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from './Button';
-import Typography from './Typography';
-import BannerLayout from './BannerLayout';
+import Button from '../../basic/Button';
+import Typography from '../../basic/Typography';
+import BannerLayout from '../../basic/BannerLayout';
 
 const backgroundImage =
   'https://images.unsplash.com/photo-1517299321609-52687d1bc55a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80';
@@ -52,7 +52,7 @@ function Banner(props) {
         size="large"
         className={classes.button}
         component="a"
-        href="/sign-in"
+        href="/order"
       >
         予 約
       </Button>
