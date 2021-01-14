@@ -1,15 +1,23 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import MuiAppBar from '@material-ui/core/AppBar';
+import { makeStyles } from '@material-ui/styles';
 
-const styles = (theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.common.white,
   }
-});
+}));
 
 function AppBar(props) {
-  return <MuiAppBar elevation={0} position="fixed" {...props} />;
+  const classes = useStyles();
+
+  return (
+    <MuiAppBar
+      className={classes.root}
+      elevation={2}
+      position="fixed"
+      {...props}
+    />);
 }
 
-export default withStyles(styles)(AppBar);
+export default AppBar;

@@ -1,29 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import AppBar from '../basic/AppBar';
-import Toolbar, { styles as toolbarStyles } from '../basic/Toolbar';
 
-const styles = (theme) => ({
+import { makeStyles } from '@material-ui/styles';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+
+import AppBar from '../basic/AppBar';
+// import Toolbar, { styles as toolbarStyles } from '../basic/Toolbar';
+import Toolbar from '@material-ui/core/Toolbar';
+
+
+const useStyles = makeStyles((theme) => ({
   title: {
-    fontSize: 24,
+    fontSize: 26,
   },
-  placeholder: toolbarStyles(theme).root,
+  // placeholder: toolbarStyles(theme).root,
   toolbar: {
     justifyContent: 'space-between',
   },
-  left: {
-    flex: 1,
-  },
   leftLinkActive: {
     color: theme.palette.common.white,
-  },
-  right: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'flex-end',
   },
   rightLink: {
     fontSize: 16,
@@ -33,48 +30,51 @@ const styles = (theme) => ({
   linkSecondary: {
     color: theme.palette.secondary.main,
   },
-});
+}));
 
-function Header(props) {
-  const { classes } = props;
+
+function Header() {
+  const classes = useStyles();
 
   return (
-    <div>
+    <React.Fragment>
       <AppBar position="fixed">
         <Toolbar className={classes.toolbar}>
-          <div className={classes.left} />
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.title}
-            href="/"
-          >
-            {'HOTEL'}
+          <Grid alignItems="center" xs={10} >
+            <Link
+              variant="h6"
+              underline="none"
+              color="inherit"
+              className={classes.title}
+              href="/"
+            >
+              HOTEL
           </Link>
-          <div className={classes.right}>
+          </Grid>
+          <Grid container xs={1} spacing={3}>
             <Link
               color="inherit"
               variant="h6"
-              underline="none"
+              underline="hover"
               className={classes.rightLink}
               href="/sign-in"
             >
-              {'Sign In'}
+              ログイン
             </Link>
+          </Grid>
+          <Grid container xs={1} spacing={3}>
             <Link
               variant="h6"
-              underline="none"
+              underline="hover"
               className={clsx(classes.rightLink, classes.linkSecondary)}
-              href="/order"
+              href="/detail"
             >
-              {'Sign Up'}
+              登録
             </Link>
-          </div>
+          </Grid>
         </Toolbar>
       </AppBar>
-      <div className={classes.placeholder} />
-    </div>
+    </React.Fragment >
   );
 }
 
@@ -85,4 +85,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Header);
+export default Header;

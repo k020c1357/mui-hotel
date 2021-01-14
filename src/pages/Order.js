@@ -14,7 +14,10 @@ import RoomType from '../components/orderform/RoomType';
 import PersonSelect from '../components/orderform/Person';
 import NumOfRooms from '../components/orderform/NumOfRooms';
 import FoodChoice from '../components/orderform/FoodChoice';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -109,7 +112,7 @@ function Order() {
                 fullWidth
               >
                 <Link
-                  href="/detail"
+                  to="/detail"
                   align="center"
                   underline="always"
                 >

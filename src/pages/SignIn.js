@@ -54,7 +54,7 @@ function SignIn() {
       <Header />
       <AppForm>
         <Typography variant="h3" gutterBottom marked="center" align="center">
-          Sign In
+          ログイン
           </Typography>
         <Typography variant="body2" align="center">
           {'Not a member yet? '}
@@ -63,7 +63,7 @@ function SignIn() {
             align="center"
             underline="always"
           >
-            Sign Up here
+            here
             </Link>
         </Typography>
         <Form
@@ -124,7 +124,7 @@ function SignIn() {
           </Link>
         </Typography>
       </AppForm>
-      {/* <Footer /> */}
+      <Footer />
     </ThemeProvider>
   );
 }

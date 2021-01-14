@@ -1,87 +1,60 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Container from '@material-ui/core/Container';
-import Typography from '../basic/Typography';
-
-function Copyright() {
-  return (
-    <React.Fragment>
-      {'© '}
-      <Link color="inherit" href="/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-    </React.Fragment>
-  );
-}
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    backgroundColor: theme.palette.secondary.light,
+  footer: {
+    backgroundColor: theme.palette.primary.main,
+    width: `100%`,
+    position: "relative",
+    overflow: "hidden",
+    marginTop: "6em",
+    padding: "2em 0 ",
   },
-  container: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
-    display: 'flex',
-  },
-  iconsWrapper: {
-    height: 120,
-  },
-  icons: {
-    display: 'flex',
-  },
-  icon: {
-    width: 48,
-    height: 48,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.palette.warning.main,
-    marginRight: theme.spacing(1),
-    '&:hover': {
-      backgroundColor: theme.palette.warning.dark,
+  link: {
+    fontSize: "1.25em",
+    color: "#fff",
+    "&:hover": {
+      color: theme.palette.info.main,
     },
   },
-  list: {
-    margin: 0,
-    listStyle: 'none',
-    padding: 0,
-  },
-  listItem: {
-    paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(0.5),
+  copylight: {
+    color: "#fff",
+    fontSize: "1em",
+    "&:hover": {
+      color: theme.palette.info.main,
+    },
   },
 }));
 
-
-
-export default function Footer() {
+const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Typography component="footer" className={classes.root}>
-      <Container className={classes.container}>
-        <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
-            <Grid
-              container
-              direction="column"
-              justifyContent="flex-end"
-              className={classes.iconsWrapper}
-              spacing={2}
-            >
-              <Grid item className={classes.icons}>
-              </Grid>
-              <Grid item>
-                <Copyright />
-              </Grid>
-            </Grid>
-          </Grid>
+    <footer className={classes.footer}>
+      <Container maxWidth="lg">
+        <Grid container spacing={3} justify="center">
+        </Grid>
+        <Grid container direction="column" style={{ margin: "1.2em 0" }}>
+        </Grid>
+        <Grid
+          item
+          container
+          component={"a"}
+          target="_blank"
+          rel="noreferrer noopener"
+          href="/"
+          justify="center"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <Typography className={classes.copylight}>
+            &copy;  HomePage
+          </Typography>
         </Grid>
       </Container>
-    </Typography>
+    </footer>
   );
-}
+};
+
+export default Footer;

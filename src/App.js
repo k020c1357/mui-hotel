@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Order from './pages/Order';
@@ -9,19 +9,15 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path='/' exact component={Home}></Route>
-        <Route path='/sign-in' exact component={SignIn}></Route>
-        <Route path='/detail' exact componemt={Detail}></Route>
-        <Route path='/order' exact component={Order}></Route>
+        <Switch>
+          <Route path='/order' exact component={Order}></Route>
+          <Route path='/detail' exact component={Detail}></Route>
+          <Route path='/sign-in' exact component={SignIn}></Route>
+          <Route path='/' exact component={Home}></Route>
+        </Switch>
       </BrowserRouter>
     );
   }
 };
-/* function App() {
-  return (
-    <div>
-      hello world!
-    </div>
-  );
-} */
+
 export default App;

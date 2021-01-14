@@ -5,20 +5,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '../basic/Typography';
 import AppForm from '../basic/AppForm';
 import Button from '../basic/Button';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../../theme/theme';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
+
   form: {
-    marginTop: theme.spacing(6),
+    marginTop: theme.spacing(20),
+    marginBottom: theme.spacing(20),
   },
+
   button: {
     marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(2),
-  },
-  feedback: {
-    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(10),
+    displaq: 'flex',
   },
 }));
 
@@ -26,20 +25,17 @@ function OrderDetail() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppForm>
-        <CssBaseline />
-        <Typography variant="h3" marked="center" align="center">
-          订单详情
-        </Typography>
 
-        <Button className={classes.button} color="secondary">Test Button</Button>
-
-        <Typography variant="body2" align="center">
-          {'Detail Of Your Order'}
+    <AppForm >
+      <Typography variant="h2" marked="center" align="center">
+        订单详情
         </Typography>
-      </AppForm>
-    </ThemeProvider>
+      <Button className={classes.button} color="primary">Test Button</Button>
+      {/* <Typography variant="body1" align="center">
+        {'Detail Of Your Order'}
+      </Typography> */}
+    </AppForm>
+
   );
 }
 

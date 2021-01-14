@@ -10,6 +10,9 @@ const styles = (theme) => ({
     display: 'flex',
     backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
     backgroundRepeat: 'no-repeat',
+    marginTop: theme.spacing(20),
+    marginBottom: theme.spacing(20),
+
   },
   paper: {
     padding: theme.spacing(4, 3),
