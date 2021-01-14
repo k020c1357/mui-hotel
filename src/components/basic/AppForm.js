@@ -8,9 +8,8 @@ import Paper from './Paper';
 const styles = (theme) => ({
   root: {
     display: 'flex',
-    backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
-    backgroundRepeat: 'no-repeat',
-    marginTop: theme.spacing(20),
+    // backgroundRepeat: 'no-repeat',
+    marginTop: theme.spacing(16),
     marginBottom: theme.spacing(20),
 
   },

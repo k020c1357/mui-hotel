@@ -5,10 +5,11 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.primary.main,
     width: `100%`,
-    position: "relative",
+    position: "absolute",
     overflow: "hidden",
-    marginTop: "6em",
-    padding: "2em 0 ",
+    // marginTop: "",
+    marginBottom: "0",
+    padding: "6em 0",
   },
   link: {
     fontSize: "1.25em",

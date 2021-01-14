@@ -1,22 +1,22 @@
+import withRoot from '../theme/withRoot';
 import React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from '../components/basic/Typography';
-import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
+import Header from '../components/header/Header';
 import AppForm from '../components/basic/AppForm';
 import { email, required } from '../components/basic/form/validation';
 import RFTextField from '../components/basic/form/RFTextField';
 import FormButton from '../components/basic/form/FormButton';
 import FormFeedback from '../components/basic/form/FormFeedback';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../theme/theme';
 
 const useStyles = makeStyles((theme) => ({
   form: {
     marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(0),
   },
   button: {
     marginTop: theme.spacing(3),
@@ -27,20 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn() {
+function SignUp() {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
 
   const validate = (values) => {
-    const errors = required(['email', 'password'], values);
-
+    const errors = required(['firstName', 'lastName', 'email', 'password'], values);
     if (!errors.email) {
-      const emailError = email(values.email);
+      const emailError = email(values.email, values);
       if (emailError) {
-        errors.email = emailError;
+        errors.email = email(values.email, values);
       }
     }
-
     return errors;
   };
 
@@ -49,33 +47,51 @@ function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <React.Fragment>
       <Header />
       <AppForm>
-        <Typography variant="h3" gutterBottom marked="center" align="center">
-          ログイン
+        <React.Fragment>
+          <Typography variant="h3" gutterBottom marked="center" align="center">
+            Sign Up
           </Typography>
-        <Typography variant="body2" align="center">
-          {'Not a member yet? '}
-          <Link
-            href="/premium-themes/onepirate/sign-up/"
-            align="center"
-            underline="always"
-          >
-            here
+          <Typography variant="body2" align="center">
+            <Link href="/login/" underline="always">
+              Already have an account?
             </Link>
-        </Typography>
+          </Typography>
+        </React.Fragment>
         <Form
           onSubmit={handleSubmit}
           subscription={{ submitting: true }}
           validate={validate}
         >
-          {({ handleSubmit: handleSubmit2, submitting }) => (
+          {({ handleSubmit2, submitting }) => (
             <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    autoFocus
+                    component={RFTextField}
+                    autoComplete="fname"
+                    fullWidth
+                    label="First name"
+                    name="firstName"
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    component={RFTextField}
+                    autoComplete="lname"
+                    fullWidth
+                    label="Last name"
+                    name="lastName"
+                    required
+                  />
+                </Grid>
+              </Grid>
               <Field
                 autoComplete="email"
-                autoFocus
                 component={RFTextField}
                 disabled={submitting || sent}
                 fullWidth
@@ -83,11 +99,9 @@ function SignIn() {
                 margin="normal"
                 name="email"
                 required
-                size="large"
               />
               <Field
                 fullWidth
-                size="large"
                 component={RFTextField}
                 disabled={submitting || sent}
                 required
@@ -109,24 +123,18 @@ function SignIn() {
               <FormButton
                 className={classes.button}
                 disabled={submitting || sent}
-                size="large"
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign In'}
+                {submitting || sent ? 'In progress…' : 'Sign Up'}
               </FormButton>
             </form>
           )}
         </Form>
-        <Typography align="center">
-          <Link underline="always" href="/detail">
-            Forgot password?
-          </Link>
-        </Typography>
       </AppForm>
       <Footer />
-    </ThemeProvider>
+    </React.Fragment>
   );
 }
 
-export default SignIn;
+export default withRoot(SignUp);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-import SignIn from './pages/SignIn';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import Order from './pages/Order';
 import Detail from './pages/Detail';
 
@@ -12,7 +13,8 @@ class App extends Component {
         <Switch>
           <Route path='/order' exact component={Order}></Route>
           <Route path='/detail' exact component={Detail}></Route>
-          <Route path='/sign-in' exact component={SignIn}></Route>
+          <Route path='/Login' exact component={Login}></Route>
+          <Route path='/signup' exact component={SignUp}></Route>
           <Route path='/' exact component={Home}></Route>
         </Switch>
       </BrowserRouter>

@@ -1,9 +1,9 @@
-import 'date-fns';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
+import 'date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -19,7 +19,7 @@ const defaultMaterialTheme = createMuiTheme({
     },
     MuiPickersCalendarHeader: {
       switchHeader: {
-        // backgroundColor: "white",
+        backgroundColor: "white",
         color: "black",
       },
     },
@@ -47,41 +47,44 @@ const defaultMaterialTheme = createMuiTheme({
 
 export default function DatePickers() {
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2021-01-16'));
+  const [selectedDateIn, setSelectedDateIn] = React.useState(new Date());
+  const [selectedDateOut, setSelectedDateOut] = React.useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChangeIn = (date) => {
+    setSelectedDateIn(date);
   };
+
+  const handleDateChangeOut = date => {
+    setSelectedDateOut(date);
+  };
+
 
   return (
     <ThemeProvider theme={defaultMaterialTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
         <Grid container justify="space-around">
           <KeyboardDatePicker
-            // disableToolbar
             animateYearScrolling={false}
             variant="inline"
+            inputVariant="outlined"
             format="yyyy/MM/dd"
             allowKeyboardControl="false"
             disablePast='true'
-            margin="normal"
-            // id="date-picker-dialog"
             label="チェックイン"
-            value={selectedDate}
-            onChange={handleDateChange}
-            okLabel="決定"
-            cancelLabel="キャンセル"
+            value={selectedDateIn}
+            onChange={handleDateChangeIn}
+            autoOk
           />
           <KeyboardDatePicker
             margin="normal"
             variant="inline"
+            inputVariant="outlined"
             disablePast='true'
             label="チェックアウト"
             format="yyyy/MM/dd"
-            value={selectedDate}
-            onChange={handleDateChange}
-            okLabel="決定"
-            cancelLabel="キャンセル"
+            value={selectedDateOut}
+            onChange={handleDateChangeOut}
+            autoOk
           />
         </Grid>
       </MuiPickersUtilsProvider>
