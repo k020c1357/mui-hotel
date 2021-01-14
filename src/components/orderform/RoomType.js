@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { OrderContext } from './context/OrderState';
 
 export default function RoomType() {
-  const [value, setValue] = React.useState('JapaneseStyle');
+  const [value, setValue] = useState('JapaneseStyle');
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -17,7 +18,6 @@ export default function RoomType() {
       zcomponent="fieldset"
       margin='normal'
       size='medium'
-
     >
       <FormLabel component="legend">部屋タイプ</FormLabel>
       <RadioGroup

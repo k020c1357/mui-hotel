@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
+import Grid from '@material-ui/core/Grid';
+import { OrderContext } from './context/OrderState';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -19,23 +21,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersonSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const [adult, setAdult] = useState('');
+  const [children, setChildren] = useState('');
+  const [baby, setBaby] = useState('');
+
+  const handleChangeAdult = (event) => {
+    setAdult(event.target.value);
+    console.log(event.target.value);
+  };
+  const handleChangeChildren = (event) => {
+    setChildren(event.target.value);
+    console.log(event.target.value);
+  };
+  const handleChangeBaby = (event) => {
+    setBaby(event.target.value);
+    console.log(event.target.value);
   };
 
   return (
-    <div>
+    <React.Fragment>
       <FormLabel component="legend">ご利用人数</FormLabel>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+      <Grid justifyContent="space-around" >
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">大人</InputLabel>
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={age}
-            onChange={handleChange}
+            value={adult}
+            onChange={handleChangeAdult}
             label="Persons"
           >
             <MenuItem value="">
@@ -55,8 +69,8 @@ export default function PersonSelect() {
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={age}
-            onChange={handleChange}
+            value={children}
+            onChange={handleChangeChildren}
             label="Persons"
           >
             <MenuItem value="">
@@ -76,8 +90,8 @@ export default function PersonSelect() {
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={age}
-            onChange={handleChange}
+            value={baby}
+            onChange={handleChangeBaby}
             label="Persons"
           >
             <MenuItem value="">
@@ -91,9 +105,8 @@ export default function PersonSelect() {
             <MenuItem value={6}>Six</MenuItem>
           </Select>
         </FormControl>
-      </div>
-
-    </div>
+      </Grid>
+    </React.Fragment>
   );
 
 }

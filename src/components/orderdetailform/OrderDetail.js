@@ -25,6 +25,9 @@ function OrderDetail() {
       <Typography variant="h2" marked="center" align="center">
         订单详情
         </Typography>
+      <Grid>
+        <Typography></Typography>
+      </Grid>
       <Button className={classes.button} color="primary">Test Button</Button>
     </AppForm>
   );

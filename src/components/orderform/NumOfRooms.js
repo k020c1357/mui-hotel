@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -6,6 +6,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
+import { OrderContext } from './context/OrderState';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NumOfRooms() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [roomNumber, setRoomNumber] = useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setRoomNumber(event.target.value);
   };
 
   return (
@@ -35,7 +36,7 @@ export default function NumOfRooms() {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={age}
+          value={roomNumber}
           onChange={handleChange}
           label="NumOfRooms"
         >

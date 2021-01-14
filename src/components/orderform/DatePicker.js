@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -9,6 +9,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import jaLocale from "date-fns/locale/ja";
+import { OrderContext } from './context/OrderState';
 
 const defaultMaterialTheme = createMuiTheme({
   overrides: {
@@ -46,9 +47,8 @@ const defaultMaterialTheme = createMuiTheme({
 });
 
 export default function DatePickers() {
-
-  const [selectedDateIn, setSelectedDateIn] = React.useState(new Date());
-  const [selectedDateOut, setSelectedDateOut] = React.useState(new Date());
+  const [selectedDateIn, setSelectedDateIn] = useState(new Date());
+  const [selectedDateOut, setSelectedDateOut] = useState(new Date());
 
   const handleDateChangeIn = (date) => {
     setSelectedDateIn(date);
@@ -58,14 +58,19 @@ export default function DatePickers() {
     setSelectedDateOut(date);
   };
 
-
   return (
     <ThemeProvider theme={defaultMaterialTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
-        <Grid container justify="space-around">
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
           <KeyboardDatePicker
             animateYearScrolling={false}
             variant="inline"
+            margin="normal"
             inputVariant="outlined"
             format="yyyy/MM/dd"
             allowKeyboardControl="false"
@@ -75,8 +80,16 @@ export default function DatePickers() {
             onChange={handleDateChangeIn}
             autoOk
           />
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
           <KeyboardDatePicker
             margin="normal"
+            animateYearScrolling={false}
             variant="inline"
             inputVariant="outlined"
             disablePast='true'
