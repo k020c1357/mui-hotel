@@ -1,22 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from '../components/basic/Typography';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import AppForm from '../components/basic/AppForm';
 import FormButton from '../components/basic/form/FormButton';
-import FormFeedback from '../components/basic/form/FormFeedback';
 import withRoot from '../theme/withRoot';
 import DatePickers from '../components/orderform/DatePicker';
 import RoomType from '../components/orderform/RoomType';
 import PersonSelect from '../components/orderform/Person';
 import NumOfRooms from '../components/orderform/NumOfRooms';
 import FoodChoice from '../components/orderform/FoodChoice';
-// import Link from '@material-ui/core/Link';
-
-import { Link } from 'react-router-dom';
-
+import ConfirmDialog from '../components/orderform/ConfirmDialog';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -43,22 +40,18 @@ function Order() {
     <React.Fragment>
       <Header />
       <AppForm>
-        <Typography variant="h3" gutterBottom marked="center" align="center">
+        <Typography variant='h3' gutterBottom marked='center' align='center'>
           ホテル＆民宿
         </Typography>
-        <Form
-          onSubmit={handleSubmit}
-          subscription={{ submitting: true }}
-        >
+        <Form onSubmit={handleSubmit} subscription={{ submitting: true }}>
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <form onSubmit={handleSubmit2} className={classes.form} noValidate>
-
               <DatePickers />
               <RoomType />
               <PersonSelect />
               <NumOfRooms />
               <FoodChoice />
-              <FormSpy subscription={{ submitError: true }}>
+              {/* <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
                     <FormFeedback className={classes.feedback} error>
@@ -66,21 +59,22 @@ function Order() {
                     </FormFeedback>
                   ) : null
                 }
-              </FormSpy>
+              </FormSpy> */}
               <FormButton
                 className={classes.button}
                 disabled={submitting || sent}
-                color="secondary"
+                color='secondary'
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : '予約する'}
+                {submitting || sent ? 'In PRRCESSING' : '予約する'}
+                {/* {ConfirmDialog} */}
               </FormButton>
             </form>
           )}
         </Form>
       </AppForm>
       <Footer />
-    </React.Fragment >
+    </React.Fragment>
   );
 }
 

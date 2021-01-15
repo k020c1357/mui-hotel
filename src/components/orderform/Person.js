@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
-import { OrderContext } from './context/OrderState';
+// import { OrderContext } from './context/OrderState';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -18,41 +18,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function PersonSelect() {
   const classes = useStyles();
 
-  const [adult, setAdult] = useState('');
-  const [children, setChildren] = useState('');
-  const [baby, setBaby] = useState('');
+  const [personNumber, setPersonNumber] = useState({
+    adult: 0,
+    children: 0,
+    baby: 0,
+  });
 
-  const handleChangeAdult = (event) => {
-    setAdult(event.target.value);
+  const handleChangeAdult = (personNumber, event) => {
+    setPersonNumber({
+      ...personNumber,
+      personNumber.adult: event.target.value,
+    });
     console.log(event.target.value);
   };
   const handleChangeChildren = (event) => {
-    setChildren(event.target.value);
-    console.log(event.target.value);
+    setPersonNumber(event.target.value);
   };
   const handleChangeBaby = (event) => {
-    setBaby(event.target.value);
-    console.log(event.target.value);
+    setPersonNumber(event.target.value);
   };
 
   return (
     <React.Fragment>
-      <FormLabel component="legend">ご利用人数</FormLabel>
-      <Grid justifyContent="space-around" >
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">大人</InputLabel>
+      <FormLabel component='legend'>ご利用人数</FormLabel>
+      <Grid justifyContent='space-around'>
+        <FormControl variant='outlined' className={classes.formControl}>
+          <InputLabel id='demo-simple-select-outlined-label'>大人</InputLabel>
           <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={adult}
+            labelId='demo-simple-select-outlined-label'
+            id='demo-simple-select-outlined'
+            value={personNumber.adult}
             onChange={handleChangeAdult}
-            label="Persons"
+            label='Persons'
           >
-            <MenuItem value="">
+            <MenuItem value=''>
               <em>None</em>
             </MenuItem>
             <MenuItem value={1}>One</MenuItem>
@@ -64,16 +66,16 @@ export default function PersonSelect() {
           </Select>
         </FormControl>
 
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">子ども</InputLabel>
+        <FormControl variant='outlined' className={classes.formControl}>
+          <InputLabel id='demo-simple-select-outlined-label'>子ども</InputLabel>
           <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={children}
+            labelId='demo-simple-select-outlined-label'
+            id='demo-simple-select-outlined'
+            value={personNumber.children}
             onChange={handleChangeChildren}
-            label="Persons"
+            label='Persons'
           >
-            <MenuItem value="">
+            <MenuItem value=''>
               <em>None</em>
             </MenuItem>
             <MenuItem value={1}>One</MenuItem>
@@ -85,16 +87,16 @@ export default function PersonSelect() {
           </Select>
         </FormControl>
 
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">乳幼児</InputLabel>
+        <FormControl variant='outlined' className={classes.formControl}>
+          <InputLabel id='demo-simple-select-outlined-label'>乳幼児</InputLabel>
           <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={baby}
+            labelId='demo-simple-select-outlined-label'
+            id='demo-simple-select-outlined'
+            value={personNumber.baby}
             onChange={handleChangeBaby}
-            label="Persons"
+            label='Persons'
           >
-            <MenuItem value="">
+            <MenuItem value=''>
               <em>None</em>
             </MenuItem>
             <MenuItem value={1}>One</MenuItem>
@@ -108,5 +110,4 @@ export default function PersonSelect() {
       </Grid>
     </React.Fragment>
   );
-
 }

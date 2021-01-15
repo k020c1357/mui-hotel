@@ -3,7 +3,21 @@ import OrderReducer from './OrderReducer';
 
 // Initial State
 const intialState = {
-  orderactions: []
+  orderactions: {
+    selectedDateIn: '',
+    selectedDateOut: '',
+    roomType: 'JapaneseStyle',
+    personNumber: {
+      adult: 0,
+      children: 0,
+      baby: 0,
+    },
+    roomNumber: 1,
+    foodType: {
+      checkedA: true,
+      checkedB: true,
+    },
+  },
 };
 
 // 创建 上下文
@@ -17,41 +31,44 @@ export const OrderProvider = ({ children }) => {
   function orderDate(checkIn, checkOut) {
     dispatch({
       type: 'SELECTED_DATE',
-      payload: [checkIn, checkOut,
+      payload: [checkIn, checkOut],
     });
   }
 
   function orderRoomType(type) {
     dispatch({
-      type: 'SELECTED_ROOMTYPE',
-      payload: type
+      type: 'SELECT_ROOMTYPE',
+      payload: type,
     });
   }
 
   function orderPerson() {
     dispatch({
-      type: 'SELECTED_PERSON',
+      type: 'SELECT_PERSON',
     });
   }
 
   function orderRoomNumber() {
     dispatch({
-      type: 'SELECTED_ROOMNUMBER',
+      type: 'SELECT_ROOMNUMBER',
     });
   }
 
   function orderFood() {
     dispatch({
-      type: "SELECTED_FOOD",
+      type: 'SELECT_FOOD',
     });
   }
 
-  return (<OrderContext.Provider value={{
-    orderactions: state.orderactions,
-    orderDate,
-    orderPerson,
-    orderRoomNumber,
-    orderFood,
-  }}></OrderContext.Provider >);
-
+  return (
+    <OrderContext.Provider
+      value={{
+        orderactions: state.orderactions,
+        orderDate,
+        orderPerson,
+        orderRoomNumber,
+        orderFood,
+      }}
+    ></OrderContext.Provider>
+  );
 };

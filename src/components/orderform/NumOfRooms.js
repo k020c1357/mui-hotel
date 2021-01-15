@@ -2,11 +2,10 @@ import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
-import { OrderContext } from './context/OrderState';
+// import { OrderContext } from './context/OrderState';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function NumOfRooms() {
   const classes = useStyles();
   const [roomNumber, setRoomNumber] = useState('');
@@ -29,18 +27,17 @@ export default function NumOfRooms() {
 
   return (
     <div style={{ margin: '15px auto' }}>
-
-      <FormLabel component="legend">ご利用部屋数</FormLabel>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
+      <FormLabel component='legend'>ご利用部屋数</FormLabel>
+      <FormControl variant='outlined' className={classes.formControl}>
+        <InputLabel id='demo-simple-select-outlined-label'></InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
+          labelId='demo-simple-select-outlined-label'
+          id='demo-simple-select-outlined'
           value={roomNumber}
           onChange={handleChange}
-          label="NumOfRooms"
+          label='NumOfRooms'
         >
-          <MenuItem value="">
+          <MenuItem value=''>
             <em>None</em>
           </MenuItem>
           <MenuItem value={1}>1</MenuItem>
@@ -53,5 +50,4 @@ export default function NumOfRooms() {
       </FormControl>
     </div>
   );
-
 }

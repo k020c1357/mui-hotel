@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { createMuiTheme } from "@material-ui/core";
+import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
@@ -8,8 +8,8 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import jaLocale from "date-fns/locale/ja";
-import { OrderContext } from './context/OrderState';
+import jaLocale from 'date-fns/locale/ja';
+// import { OrderContext } from './context/OrderState';
 
 const defaultMaterialTheme = createMuiTheme({
   overrides: {
@@ -20,8 +20,8 @@ const defaultMaterialTheme = createMuiTheme({
     },
     MuiPickersCalendarHeader: {
       switchHeader: {
-        backgroundColor: "white",
-        color: "black",
+        backgroundColor: 'white',
+        color: 'black',
       },
     },
     MuiPickersDay: {
@@ -54,47 +54,37 @@ export default function DatePickers() {
     setSelectedDateIn(date);
   };
 
-  const handleDateChangeOut = date => {
+  const handleDateChangeOut = (date) => {
     setSelectedDateOut(date);
   };
 
   return (
     <ThemeProvider theme={defaultMaterialTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
+        <Grid container direction='row' justify='center' alignItems='center'>
           <KeyboardDatePicker
             animateYearScrolling={false}
-            variant="inline"
-            margin="normal"
-            inputVariant="outlined"
-            format="yyyy/MM/dd"
-            allowKeyboardControl="false"
+            variant='inline'
+            margin='normal'
+            inputVariant='outlined'
+            format='yyyy/MM/dd'
+            allowKeyboardControl='false'
             disablePast='true'
-            label="チェックイン"
+            label='チェックイン'
             value={selectedDateIn}
             onChange={handleDateChangeIn}
             autoOk
           />
         </Grid>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
+        <Grid container direction='row' justify='center' alignItems='center'>
           <KeyboardDatePicker
-            margin="normal"
+            margin='normal'
             animateYearScrolling={false}
-            variant="inline"
-            inputVariant="outlined"
+            variant='inline'
+            inputVariant='outlined'
             disablePast='true'
-            label="チェックアウト"
-            format="yyyy/MM/dd"
+            label='チェックアウト'
+            format='yyyy/MM/dd'
             value={selectedDateOut}
             onChange={handleDateChangeOut}
             autoOk
