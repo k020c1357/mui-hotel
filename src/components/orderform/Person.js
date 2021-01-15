@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
-// import { OrderContext } from './context/OrderState';
+import { OrderContext } from './context/OrderContext';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,25 +20,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersonSelect() {
   const classes = useStyles();
+  const [adultNumber, setAdultNumber] = useState(2);
+  const [childrenNumber, setChildrenNumber] = useState(0);
+  const [babyNumber, setBabyNumber] = useState(0);
+  const { orderAdult, orderChildren, orderBaby } = useContext(OrderContext);
 
-  const [personNumber, setPersonNumber] = useState({
-    adult: 0,
-    children: 0,
-    baby: 0,
-  });
-
-  const handleChangeAdult = (personNumber, event) => {
-    setPersonNumber({
-      ...personNumber,
-      personNumber.adult: event.target.value,
-    });
-    console.log(event.target.value);
+  const handleChangeAdult = (event) => {
+    setAdultNumber(event.target.value);
+    orderAdult(event.target.value);
   };
   const handleChangeChildren = (event) => {
-    setPersonNumber(event.target.value);
+    setChildrenNumber(event.target.value);
+    orderChildren(event.target.value);
   };
   const handleChangeBaby = (event) => {
-    setPersonNumber(event.target.value);
+    setBabyNumber(event.target.value);
+    orderBaby(event.target.value);
   };
 
   return (
@@ -50,7 +47,7 @@ export default function PersonSelect() {
           <Select
             labelId='demo-simple-select-outlined-label'
             id='demo-simple-select-outlined'
-            value={personNumber.adult}
+            value={adultNumber}
             onChange={handleChangeAdult}
             label='Persons'
           >
@@ -71,7 +68,7 @@ export default function PersonSelect() {
           <Select
             labelId='demo-simple-select-outlined-label'
             id='demo-simple-select-outlined'
-            value={personNumber.children}
+            value={childrenNumber}
             onChange={handleChangeChildren}
             label='Persons'
           >
@@ -92,7 +89,7 @@ export default function PersonSelect() {
           <Select
             labelId='demo-simple-select-outlined-label'
             id='demo-simple-select-outlined'
-            value={personNumber.baby}
+            value={babyNumber}
             onChange={handleChangeBaby}
             label='Persons'
           >

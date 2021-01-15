@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
@@ -14,6 +14,8 @@ import PersonSelect from '../components/orderform/Person';
 import NumOfRooms from '../components/orderform/NumOfRooms';
 import FoodChoice from '../components/orderform/FoodChoice';
 import ConfirmDialog from '../components/orderform/ConfirmDialog';
+import { OrderCtxProvider } from '../components/orderform/context/OrderContext';
+
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -39,40 +41,33 @@ function Order() {
   return (
     <React.Fragment>
       <Header />
-      <AppForm>
-        <Typography variant='h3' gutterBottom marked='center' align='center'>
-          ホテル＆民宿
+      <OrderCtxProvider>
+        <AppForm>
+          <Typography variant='h3' gutterBottom marked='center' align='center'>
+            ホテル＆民宿
         </Typography>
-        <Form onSubmit={handleSubmit} subscription={{ submitting: true }}>
-          {({ handleSubmit: handleSubmit2, submitting }) => (
-            <form onSubmit={handleSubmit2} className={classes.form} noValidate>
-              <DatePickers />
-              <RoomType />
-              <PersonSelect />
-              <NumOfRooms />
-              <FoodChoice />
-              {/* <FormSpy subscription={{ submitError: true }}>
-                {({ submitError }) =>
-                  submitError ? (
-                    <FormFeedback className={classes.feedback} error>
-                      {submitError}
-                    </FormFeedback>
-                  ) : null
-                }
-              </FormSpy> */}
-              <FormButton
-                className={classes.button}
-                disabled={submitting || sent}
-                color='secondary'
-                fullWidth
-              >
-                {submitting || sent ? 'In PRRCESSING' : '予約する'}
-                {/* {ConfirmDialog} */}
-              </FormButton>
-            </form>
-          )}
-        </Form>
-      </AppForm>
+          <Form onSubmit={handleSubmit} subscription={{ submitting: true }}>
+            {({ handleSubmit: handleSubmit2, submitting }) => (
+              <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+                <DatePickers />
+                <RoomType />
+                <PersonSelect />
+                <NumOfRooms />
+                <FoodChoice />
+                <FormButton
+                  className={classes.button}
+                  disabled={submitting || sent}
+                  color='secondary'
+                  fullWidth
+                >
+                  {submitting || sent ? 'In PRRCESSING' : '予約する'}
+
+                </FormButton>
+              </form>
+            )}
+          </Form>
+        </AppForm>
+      </OrderCtxProvider>
       <Footer />
     </React.Fragment>
   );

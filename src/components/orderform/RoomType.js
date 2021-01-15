@@ -4,13 +4,15 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-// import { OrderContext } from './context/OrderState';
+import { OrderContext } from './context/OrderContext';
 
 export default function RoomType() {
   const [roomType, setRoomType] = useState('JapaneseStyle');
+  const { orderRoomType } = useContext(OrderContext);
 
   const handleChange = (event) => {
     setRoomType(event.target.value);
+    orderRoomType(event.target.value);
   };
 
   return (

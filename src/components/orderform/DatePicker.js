@@ -9,7 +9,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import jaLocale from 'date-fns/locale/ja';
-// import { OrderContext } from './context/OrderState';
+import { OrderContext } from './context/OrderContext';
 
 const defaultMaterialTheme = createMuiTheme({
   overrides: {
@@ -48,14 +48,19 @@ const defaultMaterialTheme = createMuiTheme({
 
 export default function DatePickers() {
   const [selectedDateIn, setSelectedDateIn] = useState(new Date());
-  const [selectedDateOut, setSelectedDateOut] = useState(new Date());
+  const [selectedDateOut, setSelectedDateOut] = useState(new Date() + 1);
 
-  const handleDateChangeIn = (date) => {
-    setSelectedDateIn(date);
+  const { orderDateIn, orderDateOut } = useContext(OrderContext);
+
+
+  const handleDateChangeIn = (selectedDateIn) => {
+    setSelectedDateIn(selectedDateIn);
+    orderDateIn(selectedDateOut);
   };
 
-  const handleDateChangeOut = (date) => {
-    setSelectedDateOut(date);
+  const handleDateChangeOut = (selectedDateOut) => {
+    setSelectedDateOut(selectedDateOut);
+    orderDateOut(selectedDateOut);
   };
 
   return (

@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
-// import { OrderContext } from './context/OrderState';
+import { OrderContext } from './context/OrderContext';
 
 export default function FoodChoice() {
   const [foodType, setFoodType] = useState({
     checkedA: true,
     checkedB: true,
   });
+  const { orderFood } = useContext(OrderContext);
 
   const handleChange = (event) => {
-    setFoodType({ ...foodType, [event.target.name]: event.target.checked });
+    const choiceOfFood = { ...foodType, [event.target.name]: event.target.checked };
+    setFoodType(choiceOfFood);
+    orderFood(choiceOfFood);
   };
 
   return (

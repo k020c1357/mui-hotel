@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
-// import { OrderContext } from './context/OrderState';
+import { OrderContext } from './context/OrderContext';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,9 +20,11 @@ const useStyles = makeStyles((theme) => ({
 export default function NumOfRooms() {
   const classes = useStyles();
   const [roomNumber, setRoomNumber] = useState('');
+  const { orderRoomNumber } = useContext(OrderContext);
 
   const handleChange = (event) => {
     setRoomNumber(event.target.value);
+    orderRoomNumber(event.target.value);
   };
 
   return (
