@@ -2,43 +2,59 @@ const orderReducer = (state, action) => {
   switch (action.type) {
     case 'SELECTED_DATE_IN':
       return {
-        ...state,
-        selectedDateIn: action.selectedDateIn,
+        orderInfo: {
+          ...state.orderInfo,
+          selectedDateIn: action.payload,
+        },
       };
     case 'SELECTED_DATE_OUT':
       return {
-        ...state,
-        selectedDateOut: action.selectedDateOut,
+        orderInfo: {
+          ...state.orderInfo,
+          selectedDateOut: action.payload,
+        },
       };
     case 'SELECTED_ROOMTYPE':
       return {
-        ...state,
-        roomType: action.roomType,
+        orderInfo: {
+          ...state.orderInfo,
+          roomType: action.payload,
+        },
       };
     case 'SELECTED_ADULT_NUMBER':
       return {
-        ...state,
-        adultNumber: action.adultNumber,
+        orderInfo: {
+          ...state.orderInfo,
+          adultNumber: action.payload,
+        },
       };
     case 'SELECTED_CHILDREN_NUMBER':
       return {
-        ...state,
-        childrenNumber: action.childrenNumber,
+        orderInfo: {
+          ...state.orderInfo,
+          childrenNumber: action.payload,
+        },
       };
     case 'SELECTED_BABY_NUMBER':
       return {
-        ...state,
-        babynNumber: action.babyNumber,
+        orderInfo: {
+          ...state.orderInfo,
+          babynNumber: action.payload,
+        },
       };
     case 'SELECTED_ROOM_NUMBER':
       return {
-        ...state,
-        roomNumber: action.roomNumber,
+        orderInfo: {
+          ...state.orderInfo,
+          roomNumber: action.payload,
+        },
       };
     case 'SELECTED_FOODTYPE':
       return {
-        ...state,
-        foodType: action.foodType,
+        orderInfo: {
+          ...state.orderInfo,
+          foodType: action.payload,
+        },
       };
     default:
       return state;

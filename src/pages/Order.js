@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
@@ -16,7 +16,6 @@ import FoodChoice from '../components/orderform/FoodChoice';
 import ConfirmDialog from '../components/orderform/ConfirmDialog';
 import { OrderCtxProvider } from '../components/orderform/context/OrderContext';
 
-
 const useStyles = makeStyles((theme) => ({
   form: {
     marginTop: theme.spacing(6),
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Order() {
   const classes = useStyles();
-  const [sent, setSent] = React.useState(false);
+  const [sent, setSent] = useState(false);
 
   const handleSubmit = () => {
     setSent(true);
@@ -45,10 +44,14 @@ function Order() {
         <AppForm>
           <Typography variant='h3' gutterBottom marked='center' align='center'>
             ホテル＆民宿
-        </Typography>
+          </Typography>
           <Form onSubmit={handleSubmit} subscription={{ submitting: true }}>
             {({ handleSubmit: handleSubmit2, submitting }) => (
-              <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+              <form
+                onSubmit={handleSubmit2}
+                className={classes.form}
+                noValidate
+              >
                 <DatePickers />
                 <RoomType />
                 <PersonSelect />
@@ -61,7 +64,6 @@ function Order() {
                   fullWidth
                 >
                   {submitting || sent ? 'In PRRCESSING' : '予約する'}
-
                 </FormButton>
               </form>
             )}
