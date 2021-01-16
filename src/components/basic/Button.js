@@ -20,7 +20,7 @@ const styles = (theme) => ({
   },
   sizeLarge: {
     padding: theme.spacing(2, 5),
-    fontSize: theme.typography.pxToRem(16),
+    fontSize: theme.typography.pxToRem(20),
   },
 });
 

@@ -41,7 +41,6 @@ const Footer = () => {
           item
           container
           component={"a"}
-          target="_blank"
           rel="noreferrer noopener"
           href="/"
           justify="center"

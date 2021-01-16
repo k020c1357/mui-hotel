@@ -48,7 +48,7 @@ const defaultMaterialTheme = createMuiTheme({
 
 export default function DatePickers() {
   const [selectedDateIn, setSelectedDateIn] = useState(new Date());
-  const [selectedDateOut, setSelectedDateOut] = useState(new Date() + 1);
+  const [selectedDateOut, setSelectedDateOut] = useState(new Date());
 
   const { orderDateIn, orderDateOut } = useContext(OrderContext);
 

@@ -11,11 +11,9 @@ export default function FoodChoice() {
     checkedB: true,
   });
 
-  const { orderInfo, orderFood } = useContext(OrderContext);
+  const { orderFood } = useContext(OrderContext);
 
-  useEffect(() => {
-    console.log(orderInfo);
-  });
+
 
   const handleChange = (event) => {
     const choiceOfFood = {

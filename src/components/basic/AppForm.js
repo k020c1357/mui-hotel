@@ -8,7 +8,6 @@ import Paper from './Paper';
 const styles = (theme) => ({
   root: {
     display: 'flex',
-    // backgroundRepeat: 'no-repeat',
     marginTop: theme.spacing(16),
     marginBottom: theme.spacing(20),
 

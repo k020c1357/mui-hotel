@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Button from '../Button';
 import defer from './defer';
 
@@ -11,6 +10,7 @@ function FormButton(props) {
       disabled={!mounted || !!disabled}
       type="submit"
       variant="contained"
+      size="large"
       {...others}
     />
   );

@@ -1,9 +1,24 @@
+import { SingleBed } from '@material-ui/icons';
 import React, { createContext, useReducer } from 'react';
 import OrderReducer from './OrderReducer';
 
 // 订单表格初始状态
 const intialState = {
-  orderInfo: {},
+  orderInfo: [
+    // {
+    // selectedDateIn: new Date(),
+    // selectedDateOut: new Date(),
+    // roomType: 'Single',
+    // adultNumber: 1,
+    // childrenNumber: 1,
+    // babynNumber: 1,
+    // roomNumber: 1,
+    // foodType: {
+    //   checkedA: true,
+    //   checkedB: true,
+    // },
+    // }
+  ],
 };
 
 // 创建 订单上下文
