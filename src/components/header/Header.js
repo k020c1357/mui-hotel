@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
 import { makeStyles } from '@material-ui/styles';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,9 +8,7 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '../basic/AppBar';
 
-
 const useStyles = makeStyles((theme) => ({
-
   homeButton: {
     marginLeft: theme.spacing(3),
   },
@@ -29,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function Header() {
   const classes = useStyles();
 
@@ -46,8 +42,6 @@ function Header() {
           <IconButton
             edge="start"
             className={classes.homeButton}
-            color="inherit"
-            aria-label="home"
             color="secondary"
           >
             <HomeWorkIcon />

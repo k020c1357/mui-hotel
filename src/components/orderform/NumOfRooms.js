@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NumOfRooms() {
   const classes = useStyles();
-  const [roomNumber, setRoomNumber] = useState('');
-  const { orderRoomNumber } = useContext(OrderContext);
+  const { state, orderRoomNumber } = useContext(OrderContext);
+  const [roomNumber, setRoomNumber] = useState(state.roomNumber);
 
   const handleChange = (event) => {
     setRoomNumber(event.target.value);

@@ -33,7 +33,7 @@ function OrderForm() {
   const classes = useStyles();
   const [sent, setSent] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const { orderInfo } = useContext(OrderContext);
+  const { state } = useContext(OrderContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,16 +43,15 @@ function OrderForm() {
   };
 
   const handleSend = (orderInfo) => {
-    axios.get('http://www.google.co.jp/', { orderInfo }).then(res => {
-      console.log(orderInfo);
-    });
+    // axios.post('/orderdetail', { state }).then(res => {
+    //   console.log(orderInfo);
+    // });
     setOpen(false);
   };
 
 
   const handleSubmit = () => {
     setSent(true);
-    console.log(orderInfo);
   };
 
   return (
@@ -80,7 +79,8 @@ function OrderForm() {
                 fullWidth
                 onClick={handleClickOpen}
               >
-                {submitting || sent ? 'In PRRCESSING' : '予約する'}
+                {/* {submitting || sent ? 'In PRRCESSING' : '予約する'} */}
+                {'予約する'}
               </FormButton>
             </form>
           )}
@@ -93,7 +93,7 @@ function OrderForm() {
           </DialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-              <h4 style={{ display: 'flex' }}>${JSON.stringify(orderInfo)}</h4>
+              <h4 style={{ display: 'flex' }}>{JSON.stringify(state)}</h4>
             </Typography>
           </DialogContent>
           <DialogActions>

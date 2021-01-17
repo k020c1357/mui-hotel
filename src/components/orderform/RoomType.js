@@ -7,8 +7,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import { OrderContext } from './context/OrderContext';
 
 export default function RoomType() {
-  const [roomType, setRoomType] = useState('JapaneseStyle');
-  const { orderRoomType } = useContext(OrderContext);
+  const { state, orderRoomType } = useContext(OrderContext);
+  const [roomType, setRoomType] = useState(state.roomType);
 
   const handleChange = (event) => {
     setRoomType(event.target.value);

@@ -1,7 +1,8 @@
 import React from 'react';
 import withRoot from '../theme/withRoot';
 import { Field, Form, FormSpy } from 'react-final-form';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import theme from '../theme/theme';
 import Link from '@material-ui/core/Link';
 import Typography from '../components/basic/Typography';
 import Header from '../components/header/Header';
@@ -46,7 +47,7 @@ function Login() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <Header />
       <AppForm>
         <React.Fragment>
@@ -123,7 +124,7 @@ function Login() {
         </Typography>
       </AppForm>
       <Footer />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
 

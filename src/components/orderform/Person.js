@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersonSelect() {
   const classes = useStyles();
-  const [adultNumber, setAdultNumber] = useState(2);
-  const [childrenNumber, setChildrenNumber] = useState(0);
-  const [babyNumber, setBabyNumber] = useState(0);
-  const { orderAdult, orderChildren, orderBaby } = useContext(OrderContext);
+  const { state, orderAdult, orderChildren, orderBaby } = useContext(OrderContext);
+  const [adultNumber, setAdultNumber] = useState(state.adultNumber);
+  const [childrenNumber, setChildrenNumber] = useState(state.childrenNumber);
+  const [babyNumber, setBabyNumber] = useState(state.babyNumber);
 
   const handleChangeAdult = (event) => {
     setAdultNumber(event.target.value);

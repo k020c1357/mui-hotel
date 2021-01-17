@@ -1,24 +1,19 @@
-import { SingleBed } from '@material-ui/icons';
 import React, { createContext, useReducer } from 'react';
 import OrderReducer from './OrderReducer';
 
 // 订单表格初始状态
 const intialState = {
-  orderInfo: [
-    // {
-    // selectedDateIn: new Date(),
-    // selectedDateOut: new Date(),
-    // roomType: 'Single',
-    // adultNumber: 1,
-    // childrenNumber: 1,
-    // babynNumber: 1,
-    // roomNumber: 1,
-    // foodType: {
-    //   checkedA: true,
-    //   checkedB: true,
-    // },
-    // }
-  ],
+  selectedDateIn: new Date(),
+  selectedDateOut: new Date(),
+  roomType: 'Single',
+  adultNumber: 1,
+  childrenNumber: 1,
+  babyNumber: 1,
+  roomNumber: 1,
+  foodType: {
+    checkedA: true,
+    checkedB: true,
+  },
 };
 
 // 创建 订单上下文
@@ -27,9 +22,8 @@ export const OrderContext = createContext(intialState);
 // Provider component
 export const OrderCtxProvider = ({ children }) => {
   const [state, dispatch] = useReducer(OrderReducer, intialState);
-  const { orderInfo } = state;
 
-  // actions
+  // actions and data
   function orderDateIn(date) {
     dispatch({
       type: 'SELECTED_DATE_IN',
@@ -51,43 +45,43 @@ export const OrderCtxProvider = ({ children }) => {
     });
   }
 
-  function orderAdult(value) {
+  function orderAdult(nums) {
     dispatch({
       type: 'SELECTED_ADULT_NUMBER',
-      payload: value,
+      payload: nums,
     });
   }
-  function orderChildren(value) {
+  function orderChildren(nums) {
     dispatch({
       type: 'SELECTED_CHILDREN_NUMBER',
-      payload: value,
+      payload: nums,
     });
   }
-  function orderBaby(value) {
+  function orderBaby(nums) {
     dispatch({
       type: 'SELECTED_Baby_NUMBER',
-      payload: value,
+      payload: nums,
     });
   }
 
-  function orderRoomNumber(value) {
+  function orderRoomNumber(nums) {
     dispatch({
       type: 'SELECTED_ROOM_NUMBER',
-      payload: value,
+      payload: nums,
     });
   }
 
-  function orderFood(choiceOfFood) {
+  function orderFood(value) {
     dispatch({
       type: 'SELECTED_FOODTYPE',
-      payload: choiceOfFood,
+      payload: value,
     });
   }
 
   return (
     <OrderContext.Provider
       value={{
-        orderInfo,
+        state,
         orderDateIn,
         orderDateOut,
         orderRoomType,

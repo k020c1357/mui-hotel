@@ -1,6 +1,7 @@
 import withRoot from '../theme/withRoot';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import theme from '../theme/theme';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
@@ -47,7 +48,7 @@ function SignUp() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <Header />
       <AppForm>
         <React.Fragment>
@@ -133,7 +134,7 @@ function SignUp() {
         </Form>
       </AppForm>
       <Footer />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
 

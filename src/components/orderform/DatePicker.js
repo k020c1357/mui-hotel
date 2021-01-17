@@ -47,20 +47,18 @@ const defaultMaterialTheme = createMuiTheme({
 });
 
 export default function DatePickers() {
-  const [selectedDateIn, setSelectedDateIn] = useState(new Date());
-  const [selectedDateOut, setSelectedDateOut] = useState(new Date());
+  const { state, orderDateIn, orderDateOut } = useContext(OrderContext);
+  const [dateIn, setDateIn] = useState(state.selectedDateIn);
+  const [dateOut, setDateOut] = useState(state.selectedDateOut);
 
-  const { orderDateIn, orderDateOut } = useContext(OrderContext);
-
-
-  const handleDateChangeIn = (selectedDateIn) => {
-    setSelectedDateIn(selectedDateIn);
-    orderDateIn(selectedDateOut);
+  const handleDateChangeIn = (dateIn) => {
+    orderDateIn(dateIn);
+    setDateIn(dateIn);
   };
 
-  const handleDateChangeOut = (selectedDateOut) => {
-    setSelectedDateOut(selectedDateOut);
-    orderDateOut(selectedDateOut);
+  const handleDateChangeOut = (dateOut) => {
+    orderDateOut(dateOut);
+    setDateOut(dateOut);
   };
 
   return (
@@ -76,7 +74,7 @@ export default function DatePickers() {
             allowKeyboardControl='false'
             disablePast='true'
             label='チェックイン'
-            value={selectedDateIn}
+            value={dateIn}
             onChange={handleDateChangeIn}
             autoOk
           />
@@ -90,7 +88,7 @@ export default function DatePickers() {
             disablePast='true'
             label='チェックアウト'
             format='yyyy/MM/dd'
-            value={selectedDateOut}
+            value={dateOut}
             onChange={handleDateChangeOut}
             autoOk
           />
