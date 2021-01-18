@@ -13,8 +13,9 @@ import FoodChoice from './FoodChoice';
 import { OrderContext } from './context/OrderContext';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import { DialogTitle, DialogContent, DialogActions } from './dialog/DialogComps';
-import axios from 'axios';
+import { DialogTitle, DialogContent, DialogActions } from './dialog/Dialog';
+import DialogTables from './dialog/DialogTables';
+// import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -89,12 +90,10 @@ function OrderForm() {
       <div>
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            您的订单详情
+            {'您的订单详情'}
           </DialogTitle>
           <DialogContent dividers>
-            <Typography gutterBottom>
-              <h4 style={{ display: 'flex' }}>{JSON.stringify(state)}</h4>
-            </Typography>
+            <DialogTables />
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleSend} color="secondary">
